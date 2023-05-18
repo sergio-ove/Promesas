@@ -1,11 +1,11 @@
 //creamos un array de objetos
 const datos = [
 
-    { propietario: 'Pepe', teléfono: 653252141, matrícula: '327-k', modelo: 'seat', multas: 0 },
-    { propietario: 'paco', teléfono: 683726192, matrícula: '832-p', modelo: 'audi', multas: 8 },
-    { propietario: 'ricardo', teléfono: 683992142, matrícula: '283-c', modelo: 'lamborghini', multas: 2 },
-    { propietario: 'marc', teléfono: 653283923, matrícula: '912-h', modelo: 'ford', multas: 5 },
-    { propietario: 'gonzalo', teléfono: 683746243, matrícula: '910-f', modelo: 'chevrolet', multas: 0 },
+    { propietario: 'Sergio', teléfono: 653252141, matrícula: '1285-LLK', modelo: 'BMW', multas: 0 },
+    { propietario: 'Francisco', teléfono: 683726192, matrícula: '1832-JKL', modelo: 'AUDI', multas: 8 },
+    { propietario: 'Gonzalo', teléfono: 683992142, matrícula: '2550-BCD', modelo: 'SEAT', multas: 2 },
+    { propietario: 'Sara', teléfono: 653283923, matrícula: '0082-KLK', modelo: 'HONDA', multas: 5 },
+    { propietario: 'Carmen', teléfono: 683746243, matrícula: '1021-MSB', modelo: 'TOYOTA', multas: 0 },
 
 ];
 
@@ -33,7 +33,7 @@ document.addEventListener('click', (ev) => {
 
 const validar = (mat) => {
 
-    const matReg = /[0-9]{3}-[a-z]/gi
+    const matReg = /[0-9]{4}-[A-Z]/gi
 
     if (matReg.test(mat)) {
         return mat;
@@ -94,7 +94,7 @@ const pintar = (objeto) => {
     const tablaResultados = document.querySelector('#tablaresultados');
     const trDatosUsuario = document.createElement('TR');
     const tr = document.createElement('TR');
-    const encabezados = ["propietario", "telefono", "matricula", "modelo", "multas"]
+    const encabezados = ["Propietario", "Teléfono", "Matrícula", "Modelo", "Multas"]
 
     encabezados.forEach(dato => {
 
