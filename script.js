@@ -91,13 +91,14 @@ const validarMulta = (mat) => {
 
 const pintar = (objeto) => {
 
+    console.log(objeto)
     const tablaResultados = document.querySelector('#tablaresultados');
     const trDatosUsuario = document.createElement('TR');
     const tr = document.createElement('TR');
-    const encabezados = ["Propietario", "Teléfono", "Matrícula", "Modelo", "Multas"]
+    const encabezados = ["Propietario", "Teléfono", "Matrícula", "Marca", "Multas"]
 
     encabezados.forEach(dato => {
-
+        console.log(dato);
         const th = document.createElement('TH');
         th.textContent = dato;
         tr.append(th)
@@ -109,10 +110,23 @@ const pintar = (objeto) => {
         td.textContent = objeto[key]
         trDatosUsuario.append(td);
     }
-    
+
+
     tablaResultados.append(tr)
     tablaResultados.append(trDatosUsuario)
-    
+
+}
+
+const eliminarLocal = () => {
+
+    const tablaGeneral = document.querySelector('#tablaresultados')
+
+    localStorage.clear();
+
+    tablaGeneral.textContent = " ";
+
+    pintarAlIniciar()
+
 }
 
 

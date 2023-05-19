@@ -14,28 +14,43 @@
 
         <div class="divEncabezado">
 
-            <h1>EJERCICIO CON PROMESAS</h1>
-            <img src="/Promesas/img/matricula.png" alt="">
-            <h2>Introduzca la matricula para saber si su vehículo tiene multas</h2>
+            <h2>EJERCICIO CON PROMESAS</h2>
+            <img src="img/matricula.png" alt="">
+
 
         </div>
+        <div class="divCentral">
+            <ul class="ulMatriculas">
+                <h3>Matrículas registradas</h3>
+                <li>1285-LLK</li>
+                <li>1832-JKL</li>
+                <li>2550-BCD</li>
+                <li>0082-KLK</li>
+                <li>1021-MSB</li>
+            </ul>
 
-        <div class="divFormulario">
-            <form id="formulario" class="formulario">
+            <div class="divFormulario">
 
-                <input type="text" placeholder="Matrícula" id="matrícula">
-                <button id="comprobar">Comprobar</button>
-          
+                <form id="formulario" class="formulario">
+                    <h3>Introduzca la matricula para saber si su vehículo tiene multas</h3>
 
-            </form>
+                    <input type="text" placeholder="Matrícula" id="matrícula">
 
+                    <div class="divBotones">
+                        <button id="comprobar">Comprobar</button>
+                        <button onclick="eliminarLocal()" id="eliminar">Eliminar Registro</button>
+                    </div>
+
+                </form>
+
+            </div>
         </div>
 
     </section>
 
     </div>
 
-    <section>
+    <section id="tablaGeneral">
 
         <table id="tablilla" class="tabla">
 
@@ -43,7 +58,7 @@
 
             </tbody>
         </table>
-        
+
     </section>
 
     <script src="script.js"></script>

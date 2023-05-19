@@ -2,8 +2,8 @@ body{
     background-color: beige;
 }
 
-h1{
-    font-size: 50px;
+h2{
+    font-size: 30px;
 }
 
 .divEncabezado{
@@ -11,11 +11,36 @@ h1{
     width: 900px;
     text-align: center;
 }
+.divCentral{
+    margin: 0 auto;
+    width: 1200px;
+    display: flex;
+    flex-direction: row;
+}
+
+.divCentral h3{
+    margin-left: 30px;
+}
+.ulMatriculas{
+    background-color: rgb(236, 225, 165);
+    border-radius: 5px;
+    width: 300px;
+}
+
+.ulMatriculas li{
+    margin-left: 80px;
+    margin-bottom: 10px;
+    margin-right: 120px;
+    font-size: 20px;
+    background-color: white;
+    padding: 3px;
+    border-radius: 5px;
+}
 
 .divFormulario{
     margin: 0 auto;
-    width: 600px;
-    height: 250px;
+    width: 700px;
+    height: 270px;
     background-color: white;
     border-radius: 5px;
 }
@@ -28,17 +53,17 @@ h1{
 
 .formulario input{
     margin-top: 50px;
-    height: 50px;
+    height: 30px;
     width: 400px;
     border-radius: 5px;
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
     box-shadow: 5px 5px 5px black;
 }
 
 .formulario button{
     margin-top: 50px;
-    height: 50px;
+    height: 40px;
     width: 200px;
     background-color: black;
     color: white;
@@ -46,9 +71,16 @@ h1{
     border-radius: 5px;
 }
 
+.divBotones{
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 img{
-    height: 200px;
-    width: 250px;
+    height: 150px;
+    width: 150px;
 }
 
 .tabla{
