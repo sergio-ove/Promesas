@@ -1,13 +1,14 @@
-//creamos un array de objetos
-const datos = [
+//Creamos un array de objetos
+const arrayDatos = [
 
-    { propietario: 'Sergio', teléfono: 653252141, matrícula: '1285-LLK', modelo: 'BMW', multas: 0 },
+    { propietario: 'Sergio', teléfono: 653252141, matrícula: '1285-LLK', modelo: 'BMW', multas: 12 },
     { propietario: 'Francisco', teléfono: 683726192, matrícula: '1832-JKL', modelo: 'AUDI', multas: 8 },
     { propietario: 'Gonzalo', teléfono: 683992142, matrícula: '2550-BCD', modelo: 'SEAT', multas: 2 },
     { propietario: 'Sara', teléfono: 653283923, matrícula: '0082-KLK', modelo: 'HONDA', multas: 5 },
     { propietario: 'Carmen', teléfono: 683746243, matrícula: '1021-MSB', modelo: 'TOYOTA', multas: 0 },
 
 ];
+
 
 //Creamos una variable para guardar los datos en el localStorage.
 const datosLocal = JSON.parse(localStorage.getItem('multas')) || [];
@@ -21,7 +22,6 @@ document.addEventListener('click', (ev) => {
     if (ev.target.matches('#comprobar')) {
         const matrícula = document.querySelector('#matrícula')
         const campoMatrícula = matrícula.value;
-        console.log(campoMatrícula);
         buscar(campoMatrícula)
             .then((objeto) => { pintar(objeto) })
             .catch((error) => { alert(error) })
@@ -30,7 +30,6 @@ document.addEventListener('click', (ev) => {
 
 
 // Validamos matrícula
-
 const validar = (mat) => {
 
     const matReg = /[0-9]{4}-[A-Z]/gi
@@ -42,13 +41,12 @@ const validar = (mat) => {
     }
 }
 
+
 //Funcion para buscar si la matrícula tiene multas.
 const buscar = async (mat) => {
 
     try {
-        // const validacion = await validar(mat);
-        const objetoMat = await getMatricula(mat);//esto debería ser el objeto
-        console.log(objetoMat);
+        const objetoMat = await compruebaMatricula(mat);//esto debería ser el objeto
         const objetoConMultas = await validarMulta(objetoMat);
         datosLocal.push(objetoConMultas) // esto mira si tiene multas
         localStorage.setItem('multas', JSON.stringify(datosLocal))
@@ -60,27 +58,30 @@ const buscar = async (mat) => {
 
 }
 
-const getMatricula = (mat) => {
+
+//Función que comprueba si la matrícula que introduce el usuario está en nuestra "base de datos",que es nuestro array de multas.
+const compruebaMatricula = (matricula) => {
 
     let objetoPropietario;
 
-    for (let key in datos) {
-        if (datos[key].matrícula == mat) {
-            objetoPropietario = datos[key]
+    //Recorremos nuestro array de datos y vemos si existe coincidencia.
+    for (let key in arrayDatos) {
+        if (arrayDatos[key].matrícula == matricula) {
+            objetoPropietario = arrayDatos[key]
         }
     }
 
+    //Si existe coincidencia devolvemos el objeto entero y si no lo sacamos por el throw
     if (!objetoPropietario) {
         throw 'No existe esa matrícula en nuestra base de datos'
     } else {
         return objetoPropietario
     }
 
-
 }
 
+//Función para comprobar si la matrícula que nos llega tiene multas.
 const validarMulta = (mat) => {
-    console.log(mat.multas)
     if (mat.multas > 0) {
         return mat
     } else {
@@ -89,25 +90,25 @@ const validarMulta = (mat) => {
 }
 
 
-const pintar = (objeto) => {
-
-    console.log(objeto)
+//Función para pintar en pantalla una vez comprobado que tiene multas.
+const pintar = (matricula) => {
     const tablaResultados = document.querySelector('#tablaresultados');
     const trDatosUsuario = document.createElement('TR');
     const tr = document.createElement('TR');
     const encabezados = ["Propietario", "Teléfono", "Matrícula", "Marca", "Multas"]
 
+    //Pintamos los encabezados fijos de la tabla.
     encabezados.forEach(dato => {
-        console.log(dato);
         const th = document.createElement('TH');
         th.textContent = dato;
         tr.append(th)
 
     });
 
-    for (let key in objeto) {
+    //Recorremos el objeto que nos llega y pintamos los datos.
+    for (let key in matricula) {
         const td = document.createElement('TD');
-        td.textContent = objeto[key]
+        td.textContent = matricula[key]
         trDatosUsuario.append(td);
     }
 
@@ -117,6 +118,8 @@ const pintar = (objeto) => {
 
 }
 
+
+//Funciónalidad del botón "eliminar registro".Nos elimina los datos guardados en el localStorage y reiniciamos dejando vacío el registro.
 const eliminarLocal = () => {
 
     const tablaGeneral = document.querySelector('#tablaresultados')
@@ -125,18 +128,6 @@ const eliminarLocal = () => {
 
     tablaGeneral.textContent = " ";
 
-    pintarAlIniciar()
 
 }
 
-
-const pintarAlIniciar = () => {
-
-    if (localStorage.getItem('datosLocal')) {
-        datosLocal.forEach((item) => {
-            pintar(item)
-        })
-    }
-}
-
-pintarAlIniciar()
